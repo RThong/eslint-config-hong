@@ -1,9 +1,9 @@
 import { Linter } from 'eslint'
 
 import { interopDefault } from '../utils'
-import { CONFIG_PREFIX } from 'src/constants'
+import { CONFIG_PREFIX } from '../constants'
 
-export async function stylistic(): Promise<Linter.Config[]> {
+export async function stylistic (): Promise<Linter.Config[]> {
   const pluginStylistic = await interopDefault(import('@stylistic/eslint-plugin'))
 
   return [

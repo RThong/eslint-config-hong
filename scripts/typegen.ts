@@ -2,7 +2,7 @@ import fs from 'node:fs/promises'
 
 import { flatConfigsToRulesDTS } from 'eslint-typegen/core'
 
-import { javascript, stylistic } from '../src'
+import { javascript, stylistic, typescript } from '../src'
 import { combine } from 'src/utils'
 import { builtinRules } from 'eslint/use-at-your-own-risk'
 
@@ -17,9 +17,10 @@ const configs = await combine(
   },
   javascript(),
   stylistic(),
+  typescript(),
 )
 
-let dts = await flatConfigsToRulesDTS(configs, {
+const dts = await flatConfigsToRulesDTS(configs, {
   // includeAugmentation: false,
 })
 
