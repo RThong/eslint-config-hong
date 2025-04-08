@@ -12,16 +12,18 @@ export async function typescript (): Promise<Linter.Config[]> {
     interopDefault(import('@typescript-eslint/parser')),
   ] as const)
 
+  const files = [
+    GLOB_TS,
+    GLOB_TSX,
+  ]
+
   return [
     {
       name: `${CONFIG_PREFIX}/typescript/setup`,
       plugins: {
         ts: pluginTs as any,
       },
-      files: [
-        GLOB_TS,
-        GLOB_TSX,
-      ],
+      files,
       languageOptions: {
         parser: parserTs,
         parserOptions: {
@@ -31,6 +33,7 @@ export async function typescript (): Promise<Linter.Config[]> {
     },
 
     {
+      files,
       name: `${CONFIG_PREFIX}/typescript/rules`,
       rules: {
         // 规则的@typescript-eslint前缀 改为 ts，匹配plugins的定义
@@ -45,6 +48,7 @@ export async function typescript (): Promise<Linter.Config[]> {
         
         'ts/no-explicit-any': 'off',
         'ts/no-non-null-assertion': 'off',
+        'ts/no-empty-object-type': ['error', { allowInterfaces: 'always' }],
       },
     }
   ]

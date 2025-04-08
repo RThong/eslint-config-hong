@@ -5,13 +5,13 @@ const log = console.log
 
 // Define a class using ES6 class syntax
 class Person {
-  constructor(name, age) {
+  constructor (name, age) {
     this.name = name
     this.age = age
   }
 
   // Define a method within the class
-  sayHello() {
+  sayHello () {
     log(`Hello, my name is ${this.name} and I am ${this.age} years old.`)
   }
 }
