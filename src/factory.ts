@@ -1,8 +1,10 @@
 import type { Linter } from 'eslint'
-import { javascript, stylistic, typescript, ignores, vue } from './configs'
 import type { Awaitable, OptionsConfig } from './types'
-import { combine, resolveSubOptions } from './utils'
 import { isPackageExists } from 'local-pkg'
+import { ignores, javascript, node, stylistic, typescript, vue } from './configs'
+import { imports } from './configs/imports'
+import { perfectionist } from './configs/perfectionist'
+import { combine, resolveSubOptions } from './utils'
 
 const VuePackages = [
   'vue',
@@ -19,7 +21,15 @@ export async function lintFactory (options: OptionsConfig & Linter.Config = {}, 
 
   const configs: Awaitable<Linter.Config[]>[] = []
 
-  configs.push(ignores(), javascript(), stylistic(), typescript())
+  configs.push(
+    ignores(),
+    javascript(),
+    node(),
+    stylistic(),
+    typescript(),
+    imports(),
+    perfectionist(),
+  )
 
   if (enableVue) {
     configs.push(vue({

@@ -1,6 +1,6 @@
-import { GLOB_EXCLUDE } from '../globs'
-import { Linter } from 'eslint'
+import type { Linter } from 'eslint'
 import { CONFIG_PREFIX } from '../constants'
+import { GLOB_EXCLUDE } from '../globs'
 
 export async function ignores (userIgnores: string[] = []): Promise<Linter.Config[]> {
   return [

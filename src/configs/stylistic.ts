@@ -1,9 +1,9 @@
-import { Linter } from 'eslint'
+import type { Linter } from 'eslint'
 import { pluginAntfu } from '../plugins'
 
 import { interopDefault } from '../utils'
 import { CONFIG_PREFIX } from '../constants'
-import { StylisticConfig } from '../types'
+import type { StylisticConfig } from '../types'
 
 export const StylisticConfigDefaults: StylisticConfig = {
   indent: 2,
@@ -12,7 +12,7 @@ export const StylisticConfigDefaults: StylisticConfig = {
   semi: false,
 }
 
-export async function stylistic(): Promise<Linter.Config[]> {
+export async function stylistic (): Promise<Linter.Config[]> {
   const {
     indent,
     jsx,

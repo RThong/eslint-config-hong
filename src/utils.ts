@@ -1,5 +1,5 @@
-import { Linter } from 'eslint'
-import { Awaitable, OptionsConfig } from './types'
+import type { Linter } from 'eslint'
+import type { Awaitable, OptionsConfig } from './types'
 
 /**
  * Combine array and non-array configs into a single array.

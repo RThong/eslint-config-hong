@@ -2,9 +2,9 @@ import fs from 'node:fs/promises'
 
 import { flatConfigsToRulesDTS } from 'eslint-typegen/core'
 
-import { javascript, stylistic, typescript, vue } from '../src'
-import { combine } from 'src/utils'
 import { builtinRules } from 'eslint/use-at-your-own-risk'
+import { combine } from 'src/utils'
+import { imports, javascript, node, perfectionist, stylistic, typescript, vue } from '../src'
 
 const configs = await combine(
   // 生成eslint rules的类型
@@ -18,7 +18,11 @@ const configs = await combine(
   javascript(),
   stylistic(),
   typescript(),
+  node(),
   vue(),
+  imports(),
+  perfectionist(),
+
 )
 
 const dts = await flatConfigsToRulesDTS(configs, {

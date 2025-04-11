@@ -1,6 +1,7 @@
 import type { Linter } from 'eslint'
-import { CONFIG_PREFIX } from '../constants'
 import globals from 'globals'
+import { CONFIG_PREFIX } from '../constants'
+import { pluginUnusedImports } from '../plugins'
 
 export async function javascript (): Promise<Linter.Config[]> {
   return [
@@ -31,6 +32,9 @@ export async function javascript (): Promise<Linter.Config[]> {
     },
     {
       name: `${CONFIG_PREFIX}/javascript/rules`,
+      plugins: {
+        'unused-imports': pluginUnusedImports,
+      },
       rules: {
         'no-console': ['error', { allow: ['warn', 'error'] }],
         'no-debugger': 'error',
@@ -46,6 +50,18 @@ export async function javascript (): Promise<Linter.Config[]> {
           {
             destructuring: 'all',
             ignoreReadBeforeAssign: true,
+          },
+        ],
+
+        'unused-imports/no-unused-imports': 'error',
+        'unused-imports/no-unused-vars': [
+          'error',
+          {
+            args: 'after-used',
+            argsIgnorePattern: '^_',
+            ignoreRestSiblings: true,
+            vars: 'all',
+            varsIgnorePattern: '^_',
           },
         ],
       },
