@@ -1,8 +1,8 @@
-import { CONFIG_PREFIX } from '../constants'
-import { interopDefault } from '../utils'
 import type { Linter } from 'eslint'
-import { GLOB_VUE } from '../globs'
 import type { OptionsVue } from '../types'
+import { CONFIG_PREFIX } from '../constants'
+import { GLOB_VUE } from '../globs'
+import { interopDefault } from '../utils'
 
 export async function vue (options: OptionsVue = {}): Promise<Linter.Config[]> {
   const { vueVersion = 3 } = options

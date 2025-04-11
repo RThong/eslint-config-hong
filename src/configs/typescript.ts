@@ -1,7 +1,7 @@
-import { CONFIG_PREFIX } from '../constants'
-import { interopDefault, renameRules } from '../utils'
 import type { Linter } from 'eslint'
+import { CONFIG_PREFIX } from '../constants'
 import { GLOB_TS, GLOB_TSX } from '../globs'
+import { interopDefault, renameRules } from '../utils'
 
 export async function typescript (): Promise<Linter.Config[]> {
   const [

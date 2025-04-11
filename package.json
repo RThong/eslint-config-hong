@@ -12,7 +12,7 @@
     "watch": "tsup --watch",
     "test": "vitest",
     "gen": "tsx scripts/typegen.ts",
-    "lint": "eslint . --fix"
+    "lint": "eslint"
   },
   "keywords": [],
   "author": "",

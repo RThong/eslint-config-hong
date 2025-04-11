@@ -1,10 +1,11 @@
 import type { Linter } from 'eslint'
+import { CONFIG_PREFIX } from '../constants'
 import { pluginNode } from '../plugins'
 
 export async function node (): Promise<Linter.Config[]> {
   return [
     {
-      name: 'antfu/node/rules',
+      name: `${CONFIG_PREFIX}/node/rules`,
       plugins: {
         node: pluginNode,
       },

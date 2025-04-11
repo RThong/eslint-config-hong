@@ -1,9 +1,9 @@
 import type { Linter } from 'eslint'
-import { pluginAntfu } from '../plugins'
-
-import { interopDefault } from '../utils'
-import { CONFIG_PREFIX } from '../constants'
 import type { StylisticConfig } from '../types'
+
+import { CONFIG_PREFIX } from '../constants'
+import { pluginAntfu } from '../plugins'
+import { interopDefault } from '../utils'
 
 export const StylisticConfigDefaults: StylisticConfig = {
   indent: 2,
