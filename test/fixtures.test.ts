@@ -14,6 +14,8 @@ afterAll(async () => {
 
 runWithConfig('js')
 
+runWithConfig('all')
+
 function runWithConfig (name: string) {
   it.concurrent(name, async ({ expect }) => {
     const from = resolve('fixtures/input')

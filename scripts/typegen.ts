@@ -2,7 +2,7 @@ import fs from 'node:fs/promises'
 
 import { flatConfigsToRulesDTS } from 'eslint-typegen/core'
 
-import { javascript, stylistic, typescript } from '../src'
+import { javascript, stylistic, typescript, vue } from '../src'
 import { combine } from 'src/utils'
 import { builtinRules } from 'eslint/use-at-your-own-risk'
 
@@ -18,6 +18,7 @@ const configs = await combine(
   javascript(),
   stylistic(),
   typescript(),
+  vue(),
 )
 
 const dts = await flatConfigsToRulesDTS(configs, {
