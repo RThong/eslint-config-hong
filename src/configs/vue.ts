@@ -1,17 +1,16 @@
 import { CONFIG_PREFIX } from '../constants'
 import { interopDefault } from '../utils'
-import { Linter } from 'eslint'
+import type { Linter } from 'eslint'
 import { GLOB_VUE } from '../globs'
+import type { OptionsVue } from '../types'
 
-export async function vue (): Promise<Linter.Config[]> {
+export async function vue (options: OptionsVue = {}): Promise<Linter.Config[]> {
+  const { vueVersion = 3 } = options
+
   const files = [GLOB_VUE]
-  const vueVersion = 3
   const indent = 2
 
-  const [
-    pluginVue,
-    parserVue,
-  ] = await Promise.all([
+  const [pluginVue, parserVue] = await Promise.all([
     interopDefault(import('eslint-plugin-vue')),
     interopDefault(import('vue-eslint-parser')),
   ] as const)
@@ -62,17 +61,17 @@ export async function vue (): Promise<Linter.Config[]> {
         ...pluginVue.configs.base.rules as any,
 
         // https://eslint.vuejs.org/user-guide/#bundle-configurations-eslint-config-js
-        // ...vueVersion === 2
-        //   ? {
-        //     ...pluginVue.configs['vue2-essential'].rules as any,
-        //     ...pluginVue.configs['vue2-strongly-recommended'].rules as any,
-        //     ...pluginVue.configs['vue2-recommended'].rules as any,
-        //   }
-        //   : {
-        //     ...pluginVue.configs['flat/essential'].map(c => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
-        //     ...pluginVue.configs['flat/strongly-recommended'].map(c => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
-        //     ...pluginVue.configs['flat/recommended'].map(c => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
-        //   },
+        ...vueVersion === 2
+          ? {
+            ...pluginVue.configs['vue2-essential'].rules as any,
+            ...pluginVue.configs['vue2-strongly-recommended'].rules as any,
+            ...pluginVue.configs['vue2-recommended'].rules as any,
+          }
+          : {
+            ...pluginVue.configs['flat/essential'].map(c => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
+            ...pluginVue.configs['flat/strongly-recommended'].map(c => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
+            ...pluginVue.configs['flat/recommended'].map(c => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
+          },
         ...{
           ...pluginVue.configs['flat/essential'].map(c => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
           ...pluginVue.configs['flat/strongly-recommended'].map(c => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,

@@ -1,5 +1,5 @@
 import { Linter } from 'eslint'
-import { Awaitable } from './types'
+import { Awaitable, OptionsConfig } from './types'
 
 /**
  * Combine array and non-array configs into a single array.
@@ -42,10 +42,24 @@ export function renameRules (
     Object.entries(rules)
       .map(([key, value]) => {
         for (const [from, to] of Object.entries(map)) {
-          if (key.startsWith(`${from}/`))
+          if (key.startsWith(`${from}/`)) {
             return [to + key.slice(from.length), value]
+          }
         }
         return [key, value]
       }),
   )
+}
+
+export type ResolvedOptions<T> = T extends boolean
+  ? never
+  : NonNullable<T>
+
+export function resolveSubOptions<K extends keyof OptionsConfig> (
+  options: OptionsConfig,
+  key: K,
+): ResolvedOptions<OptionsConfig[K]> {
+  return typeof options[key] === 'boolean'
+    ? {} as any
+    : options[key] ?? {} as any
 }

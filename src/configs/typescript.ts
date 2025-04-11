@@ -45,11 +45,16 @@ export async function typescript (): Promise<Linter.Config[]> {
           pluginTs.configs.strict.rules!,
           { '@typescript-eslint': 'ts' },
         ),
-        
+
         'ts/no-explicit-any': 'off',
         'ts/no-non-null-assertion': 'off',
         'ts/no-empty-object-type': ['error', { allowInterfaces: 'always' }],
+        'ts/consistent-type-imports': ['error', {
+          disallowTypeAnnotations: false,
+          fixStyle: 'separate-type-imports',
+          prefer: 'type-imports',
+        }],
       },
-    }
+    },
   ]
 }
