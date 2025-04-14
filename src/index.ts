@@ -1,8 +1,19 @@
-import { lintFactory } from './factory'
+import antfu from '@antfu/eslint-config'
+import { imports, javascript, style, vue } from './configs'
 
-export * from './configs'
-export * from './factory'
-export * from './types'
-export * from './utils'
+export default function hong (...args: Parameters<typeof antfu>): ReturnType<typeof antfu> {
+  const [options = {}, ...configs] = args
 
-export default lintFactory
+  return antfu(
+    {
+      isInEditor: false,
+      formatters: true,
+      ...options,
+    },
+    javascript(),
+    style(),
+    vue(),
+    imports(),
+    ...configs,
+  )
+}

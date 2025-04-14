@@ -1,10 +1,8 @@
-import lintFactory from './src'
+import hong from './src'
 
-export default lintFactory({
-
-}, {
+export default hong({
   ignores: [
-    'fixtures',
+    // 'fixtures',
     '_fixtures',
   ],
 })

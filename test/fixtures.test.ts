@@ -1,4 +1,3 @@
-import type { OptionsConfig } from '../src/types'
 import fs from 'node:fs/promises'
 import { join, resolve } from 'node:path'
 import { execa } from 'execa'
@@ -13,15 +12,9 @@ afterAll(async () => {
   // await fs.rm('_fixtures', { recursive: true, force: true })
 })
 
-runWithConfig('js', {
-  vue: false,
-})
+runWithConfig('all')
 
-runWithConfig('all', {
-  vue: true,
-})
-
-function runWithConfig (name: string, configs: OptionsConfig) {
+function runWithConfig (name: string) {
   it.concurrent(name, async ({ expect }) => {
     const from = resolve('fixtures/input')
     const output = resolve('fixtures/output', name)
@@ -35,9 +28,9 @@ function runWithConfig (name: string, configs: OptionsConfig) {
     })
     await fs.writeFile(join(target, 'eslint.config.js'), `
 // @eslint-disable
-import lintFactory from 'eslint-config-hong'
+import hong from 'eslint-config-hong'
 
-export default lintFactory(${JSON.stringify(configs)})
+export default hong()
   `)
 
     await execa('npx', ['eslint', '.', '--fix'], {
