@@ -2,7 +2,7 @@ import hong from './src'
 
 export default hong({
   ignores: [
-    // 'fixtures',
+    'fixtures',
     '_fixtures',
   ],
 })
