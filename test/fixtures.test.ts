@@ -33,7 +33,7 @@ import hong from 'eslint-config-hong'
 export default hong()
   `)
 
-    await execa('npx', ['eslint', '.', '--fix'], {
+    await execa('npx', [ 'eslint', '.', '--fix' ], {
       cwd: target,
       stdio: 'pipe',
     })
