@@ -27,13 +27,10 @@
   },
   "peerDependencies": {
     "@antfu/eslint-config": "^4.12.0",
-    "eslint": "^9.24.0",
-    "eslint-plugin-format": "^1.0.1"
+    "eslint": "^9.24.0"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^4.12.0",
-    "eslint-plugin-format": "^1.0.1",
-    "jiti": "^2.4.2"
+    "@antfu/eslint-config": "^4.12.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
@@ -41,6 +38,7 @@
     "eslint": "^9.24.0",
     "eslint-config-hong": "workspace:*",
     "execa": "^9.5.2",
+    "jiti": "^2.4.2",
     "tinyglobby": "^0.2.12",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3",

@@ -6,6 +6,7 @@ export default function hong (...args: Parameters<typeof antfu>): ReturnType<typ
 
   return antfu(
     {
+      isInEditor: false,
       formatters: true,
       yaml: false,
       markdown: false,
